@@ -1,0 +1,31 @@
+run_name: 'example_dhsc_leg_run' #name run of the tool- will name files and folders 
+scrape_links: True #If True, scrape leg links form legislation.gov
+scrape_more_resources: True #If True, scrape pdfs from more resources page for each leg
+extract_review_clauses: True  #If True, extract review clauses from leg text and impact assessments (IAs)
+convert_scanned_pdfs: True # If True, convert any scanned IAs and extract review clauses
+
+scraping:
+  start_year: 1975 #year to conduct search from 
+  end_year: 2024 #Year to search up until
+  search_term: "Signed by authority of the Secretary of State for Health" #term to search legislation .gov for ie to identify dept legislation
+
+text_review_clause_extraction:
+  search_terms: [
+    review of the regulatory provision",
+    "Review Regulation",
+    "The Secretary of State must from time to time"] #review clause terms to search for within legislation text 
+  n_sentences: 4 #length of review clause section to extract
+  
+IA_review_clause_extraction:
+  query_settings:
+    match_sentences: [
+        'When will the policy be reviewed to establish its impact and the extent to which the policy objectives have been achieved',
+        'When will the policy be reviewed to establish the actual costs and benefits and the achievement of the desired effects',
+        "Will the policy be reviewed"] #review section formats in IAs to search for
+    n_sentences: 4 #review section length in IAs to attempt clause extract from - leave as default
+    clause_query: 'Is the policy going to be reviewed?' #IA review clause query - leave as default
+    date_query: "When must the policy be reviewed by?" #IA review date query - leave as default
+    similarity_threshold: 0.3 #similary search threshold - leave as default
+  models:
+    qa_model: 'deepset/tinyroberta-squad2' # QA model name - leave as default
+    embedding_model: 'all-minilm-l6-v2' # embedding model name - leave as default

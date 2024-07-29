@@ -1,0 +1,36 @@
+name: QA
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.12.3
+          
+    
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --no-cache-dir --upgrade pip
+          python3 -m pip install --no-cache-dir -r requirements.txt
+
+      - name: Format code
+        run: |
+          python3 -m black src
+
+      - name: Lint with flake8
+        run: |
+          python3 -m flake8 src 
+
+      - name: Sort imports
+        run: |
+          python3 -m isort src 
+
+      - name: Test with pytest
+        run: |
+          python3 -m pytest -vv
