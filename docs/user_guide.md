@@ -76,7 +76,7 @@ The `scraping` section of the config covers settings that define the initial sea
 | `end_year`: The latest year to conduct search up until<br>
 | `search_term`: The term to search for within legislation. This is usually a term that is specific to a Departments legislation.<br>
 
-For example running the tool with a the `scraping` section of the config that looks like this:
+For example running the tool with the `scraping` section of the config that looks like this:
 
 ```         
 scraping
