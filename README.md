@@ -38,6 +38,10 @@ This file is found in the `inputs/configs` folder.
 
 The parameters in the config.yml are explained in more detail in the [detailed user guide](./docs/USER_GUIDE.md).
 
+### QA Status
+
+The project has been QA'd.
+
 ## Project Organization
 
     ├── .github                 <- Github actions and workflows.
